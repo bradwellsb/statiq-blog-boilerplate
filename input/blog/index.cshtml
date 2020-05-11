@@ -1,0 +1,25 @@
+ArchiveSources: "blog/posts/*"
+ArchiveDestination: >
+  => GetInt("Index") <= 1 ? $"blog/index.html" : $"blog/{GetInt("Index")}.html"
+ArchivePageSize: 10
+ArchiveOrderKey: Published
+ArchiveOrderDescending: true
+Title: All Posts
+ArchiveTitle: >
+  => $"{Title}{(GetInt("Index") > 1 ? (" (Page " + GetInt("Index") + ")") : null)}"
+---
+@section Content{
+    <div class="col-md-9">
+        @Html.Partial("/blog/_posts.cshtml", Document.GetChildren())
+    </div>
+}
+@section RightSidebar{
+    <div class="col-lg-3">
+        <div>
+            @Html.Partial("/blog/_categoriesTable.cshtml")
+        </div>
+        <div class="mt-3">
+            @Html.Partial("/blog/_archiveTable.cshtml")
+        </div>
+    </div>
+}

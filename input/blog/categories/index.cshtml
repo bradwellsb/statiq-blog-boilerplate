@@ -1,0 +1,42 @@
+ArchiveSources: "blog/posts/*"
+ArchiveKey: Category
+ArchiveDestination: >
+  => GetInt("Index") <= 1 ? $"blog/categories/{GroupKey}/index.html" : $"blog/categories/{GroupKey}/{GetInt("Index")}.html"
+ArchivePageSize: 10
+ArchiveOrderKey: Published
+Title: Categories
+ArchiveTitle: => Outputs["Data"][$"blog/categories/{GroupKey}.yml"]["Title"]
+---
+@section Content {
+    <div class="col-9">
+        @if (Document.ContainsKey(Keys.GroupKey))
+        {
+			<h1>@(Outputs[nameof(Data)][$"blog/categories/{Document.GetString(Keys.GroupKey)}.yml"].GetString("Title"))</h1>
+			<p>@(Outputs[nameof(Data)][$"blog/categories/{Document.GetString(Keys.GroupKey)}.yml"].GetString("Description"))</p>
+            @Html.Partial("/blog/_posts.cshtml", Document.GetChildren())
+        }
+        else
+        {
+            @foreach (IDocument category in Document.GetChildren())
+            {
+                <div>
+                    <div class="p-3 mb-2 bg-light">
+                        <h4>@Html.DocumentLink(category)</h4>
+                        <p>@(Outputs[nameof(Data)][$"blog/categories/{category.GetString(Keys.GroupKey)}.yml"].GetString("Description"))</p>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+}
+
+@section RightSidebar{
+    <div class="col-lg-3">
+        <div>
+            @Html.Partial("/blog/_categoriesTable.cshtml")
+        </div>
+        <div class="mt-3">
+            @Html.Partial("/blog/_archiveTable.cshtml")
+        </div>
+    </div>
+}

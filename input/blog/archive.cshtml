@@ -1,0 +1,31 @@
+Enumerate: => Inputs.FilterSources("blog/posts/*").Select(x => x.GetDateTime("Published").ToString("yyyy/MM")).Distinct()
+DestinationPath: => new NormalizedPath($"blog/{Current}/index.html")
+Title: => $"Post Archive - {Current}"
+layout: _layout
+---
+@section Content{
+    <div class="col-md-9">
+        @{
+            DateTime archiveDate;
+            if (DateTime.TryParse(Model.GetString(Keys.Current), out archiveDate))
+            {
+                <h1>Post from @archiveDate.ToString("MMMM yyyy")</h1>
+            }
+            @Html.Partial("/blog/_posts.cshtml", Outputs[nameof(Content)]
+                .Flatten()
+                .FilterSources("blog/posts/*")
+                .Where(doc => doc.GetDateTime("Published").ToString("yyyy/MM").Equals(Model.GetString(Keys.Current)))
+                .OrderByDescending(doc => doc.GetDateTime("Published")))
+        }
+        </div>
+}
+@section RightSidebar{
+    <div class="col-lg-3">
+        <div>
+            @Html.Partial("/blog/_categoriesTable.cshtml")
+        </div>
+        <div class="mt-3">
+            @Html.Partial("/blog/_archiveTable.cshtml")
+        </div>
+    </div>
+}

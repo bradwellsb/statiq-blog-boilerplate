@@ -1,0 +1,15 @@
+<div class="card">
+    <div class="card-header"><span class="oi oi-folder"></span> Categories</div>
+    <div class="card-body">
+        <div class="card-text mb-2">
+           @foreach (IDocument category in Outputs[nameof(Data)]
+             .Flatten()
+             .FilterSources("blog/categories/*")
+             .OrderBy(x => x.GetString("Title")))
+           {
+                var link = category.GetLink().RemoveEnd(".yml") + "/"; //remove .yml from path, add trailing slash
+                <div><a href="@link">@category.GetTitle()</a></div>
+            }
+        </div>
+    </div>
+</div>

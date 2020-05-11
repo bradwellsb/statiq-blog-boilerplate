@@ -1,0 +1,26 @@
+@{
+    Layout = @"/_layout.cshtml";
+}
+<section class="blog-section">
+    <div class="blog-container">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+					@if (IsSectionDefined("LeftSidebar"))
+                    {
+                        @RenderSection("LeftSidebar", false)
+                    }
+                    @if (IsSectionDefined("Content"))
+                    {
+                        @RenderSection("Content", false)
+                    }
+                    @if (IsSectionDefined("RightSidebar"))
+                    {
+                        @RenderSection("RightSidebar", false)
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@RenderBody()

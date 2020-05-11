@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+    <head>
+        @Html.Partial("_partials/_head")
+        @RenderSection("head", required: false)
+    </head>
+    <body class="main">
+        @Html.Partial("_partials/_header")
+        <div id="site_container" class="container-fluid flex-fill">
+            <div class="row">
+                <main id="page_container" role="main" class="col">
+                    <section class="body-section">
+                        <div class="body-container">
+                            @RenderBody()
+                        </div>
+                    </section>
+                    @Html.Partial("_partials/_footer")
+                </main>
+            </div>
+        </div>
+    </body>
+</html>

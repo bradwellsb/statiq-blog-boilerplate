@@ -1,0 +1,32 @@
+@{
+    Layout = @"/_layout.cshtml";
+}
+@{
+	IDocument topicDocument = Outputs[nameof(Archives)][$"blog/categories/{Model.GetString("Category")}/index.html"];
+	<section class="page-section">
+			<div class="row">
+				<div class="col-12">
+					<article class="post">
+						<header>
+							<h2 itemprop="headline name" class="text-primary">@(Model.GetString(Keys.Title) ?? Model.GetString(Keys.Title))</h2>
+							<div class="bh">
+								<time datetime="@Model.GetString("Published")" itemprop="datePublished">@Model.GetDateTime("Published").ToString("MMMM dd, yyyy")</time>
+								@if (topicDocument != null)
+								{
+									<a href="@(topicDocument.GetLink())"><span class="badge badge-light">@topicDocument.GetTitle()</span></a>
+								}
+							</div>
+						</header>
+						<hr />
+						<div itemprop="articleBody">
+							@RenderBody()
+						</div>
+						<div class="collapse" aria-hidden="true" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+							<meta itemprop="name" content="@Model.GetString("Author")">
+						</div>
+						<meta itemprop="dateModified" content="@Model.GetString("Modified")">
+					</article>
+				</div>
+			</div>
+	</section>
+}
