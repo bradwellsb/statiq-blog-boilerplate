@@ -9,12 +9,12 @@ ArchiveTitle: >
   => $"{Title}{(GetInt("Index") > 1 ? (" (Page " + GetInt("Index") + ")") : null)}"
 ---
 @section Content{
-    <div class="col-md-9">
+    <div class="col-lg-9 col-12">
         @Html.Partial("/blog/_posts.cshtml", Document.GetChildren())
     </div>
 }
 @section RightSidebar{
-    <div class="col-lg-3">
+    <div class="col-lg-3 col-12">
         <div>
             @Html.Partial("/blog/_categoriesTable.cshtml")
         </div>
