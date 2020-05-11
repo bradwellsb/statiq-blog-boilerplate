@@ -64,3 +64,4 @@
 
 # ID .razor files as C#
 *.razor linguist-language=C#
+*.cshtml linguist-language=C#
