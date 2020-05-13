@@ -4,7 +4,7 @@
     {
         IDocument topicDocument = Outputs[nameof(Archives)][$"{Constants.BlogPath}/categories/{post.GetString("Category")}/index.html"];
         string excerpt = post.GetString(Statiq.Html.HtmlKeys.Excerpt);
-        excerpt = excerpt.Substring(0, excerpt.Length - 4); //remove final '</p>'
+        excerpt = excerpt.RemoveEnd("</p>"); //remove final '</p>'
         var words = excerpt.Split().Take(50); //only interested in first 50 words, so add them to array
         excerpt = string.Join(" ", words); //rejoin the words as single string
         excerpt += $" ... <span class=\"small\"><a href=\"{Context.GetLink(post)}\">Read more</a></span></p>"; //add it back with some more goodies
