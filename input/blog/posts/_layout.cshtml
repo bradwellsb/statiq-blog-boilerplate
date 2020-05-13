@@ -1,8 +1,8 @@
 @{
-    Layout = @"/_layout.cshtml";
+    Layout = @"/_layout.cshtml";	
 }
 @{
-	IDocument topicDocument = Outputs[nameof(Archives)][$"blog/categories/{Model.GetString("Category")}/index.html"];
+	IDocument topicDocument = Outputs[nameof(Archives)][$"{Constants.BlogPath}/categories/{Model.GetString("Category")}/index.html"];
 	<section class="page-section">
 			<div class="row">
 				<div class="col-12">

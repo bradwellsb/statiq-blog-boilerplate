@@ -10,7 +10,18 @@
                 <main id="page_container" role="main" class="col">
                     <section class="body-section">
                         <div class="body-container">
-                            @RenderBody()
+                            <div class="row">
+                                <div class="col-12 @(Model.GetBool("ShowSidebar") ? "col-lg-9" : "")">
+                                    @RenderBody()
+                                </div>
+                                @if (Model.GetBool("ShowSidebar"))
+                                {
+                                    <div class="col-lg-3 col-12">
+                                        @Html.Partial($"/{Constants.BlogPath}/_sidebar.cshtml")
+                                    </div>
+                                }
+                            </div>
+                            
                         </div>
                     </section>
                     @Html.Partial("_partials/_footer")

@@ -1,25 +1,21 @@
-ArchiveSources: "blog/posts/*"
+ArchiveSources: => $"{Constants.BlogPath}/posts/*"
 ArchiveDestination: >
-  => GetInt("Index") <= 1 ? $"blog/index.html" : $"blog/{GetInt("Index")}.html"
+  => GetInt("Index") <= 1 ? $"{Constants.BlogPath}/index.html" : $"{Constants.BlogPath}/{GetInt("Index")}.html"
 ArchivePageSize: 10
 ArchiveOrderKey: Published
 ArchiveOrderDescending: true
 Title: All Posts
 ArchiveTitle: >
   => $"{Title}{(GetInt("Index") > 1 ? (" (Page " + GetInt("Index") + ")") : null)}"
+ShowSidebar: true
 ---
-@section Content{
-    <div class="col-lg-9 col-12">
-        @Html.Partial("/blog/_posts.cshtml", Document.GetChildren())
+
+<section class="blog-section">
+    <div class="blog-container">
+        @Html.Partial($"/{Constants.BlogPath}/_posts.cshtml", Document.GetChildren())
     </div>
-}
-@section RightSidebar{
-    <div class="col-lg-3 col-12">
-        <div>
-            @Html.Partial("/blog/widgets/_categoriesTable.cshtml")
-        </div>
-        <div class="mt-3">
-            @Html.Partial("/blog/widgets/_archiveTable.cshtml")
-        </div>
-    </div>
+</section>
+
+@section head {
+    
 }

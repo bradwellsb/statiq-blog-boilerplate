@@ -19,7 +19,7 @@ namespace StatiqBlog
                             if (ctx.PipelineName == nameof(Statiq.Web.Pipelines.Content))
                             {
                                 return doc.Source.Parent.Segments.Last().SequenceEqual("posts".AsMemory())
-                                    ? new NormalizedPath("blog").Combine(doc.GetDateTime(WebKeys.Published).ToString("yyyy")).Combine(doc.GetString("Category")).Combine(doc.Destination.FileName.ChangeExtension(".html"))
+                                    ? new NormalizedPath(Constants.BlogPath).Combine(doc.GetDateTime(WebKeys.Published).ToString("yyyy")).Combine(doc.GetString("Category")).Combine(doc.Destination.FileName.ChangeExtension(".html"))
                                     : doc.Destination.ChangeExtension(".html");
                             }
                             return doc.Destination;

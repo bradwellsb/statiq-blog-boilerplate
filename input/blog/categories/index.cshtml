@@ -1,19 +1,20 @@
-ArchiveSources: "blog/posts/*"
+ArchiveSources: => $"{Constants.BlogPath}/posts/*"
 ArchiveKey: Category
 ArchiveDestination: >
-  => GetInt("Index") <= 1 ? $"blog/categories/{GroupKey}/index.html" : $"blog/categories/{GroupKey}/{GetInt("Index")}.html"
+  => GetInt("Index") <= 1 ? $"{Constants.BlogPath}/categories/{GroupKey}/index.html" : $"{Constants.BlogPath}/categories/{GroupKey}/{GetInt("Index")}.html"
 ArchivePageSize: 10
 ArchiveOrderKey: Published
 Title: Categories
-ArchiveTitle: => Outputs["Data"][$"blog/categories/{GroupKey}.yml"]["Title"]
+ArchiveTitle: => Outputs["Data"][$"{Constants.BlogPath}/categories/{GroupKey}.yml"]["Title"]
+ShowSidebar: true
 ---
-@section Content {
-    <div class="col-lg-9 col-12">
+<section class="blog-section">
+    <div class="blog-container">
         @if (Document.ContainsKey(Keys.GroupKey))
         {
-			<h1>@(Outputs[nameof(Data)][$"blog/categories/{Document.GetString(Keys.GroupKey)}.yml"].GetString("Title"))</h1>
-			<p>@(Outputs[nameof(Data)][$"blog/categories/{Document.GetString(Keys.GroupKey)}.yml"].GetString("Description"))</p>
-            @Html.Partial("/blog/_posts.cshtml", Document.GetChildren())
+            <h1>@(Outputs[nameof(Data)][$"{Constants.BlogPath}/categories/{Document.GetString(Keys.GroupKey)}.yml"].GetString("Title"))</h1>
+            <p>@(Outputs[nameof(Data)][$"{Constants.BlogPath}/categories/{Document.GetString(Keys.GroupKey)}.yml"].GetString("Description"))</p>
+            @Html.Partial($"/{Constants.BlogPath}/_posts.cshtml", Document.GetChildren())
         }
         else
         {
@@ -22,21 +23,10 @@ ArchiveTitle: => Outputs["Data"][$"blog/categories/{GroupKey}.yml"]["Title"]
                 <div>
                     <div class="p-3 mb-2 bg-light">
                         <h4>@Html.DocumentLink(category)</h4>
-                        <p>@(Outputs[nameof(Data)][$"blog/categories/{category.GetString(Keys.GroupKey)}.yml"].GetString("Description"))</p>
+                        <p>@(Outputs[nameof(Data)][$"{Constants.BlogPath}/categories/{category.GetString(Keys.GroupKey)}.yml"].GetString("Description"))</p>
                     </div>
                 </div>
             }
         }
     </div>
-}
-
-@section RightSidebar{
-    <div class="col-lg-3 col-12">
-        <div>
-            @Html.Partial("/blog/widgets/_categoriesTable.cshtml")
-        </div>
-        <div class="mt-3">
-            @Html.Partial("/blog/widgets/_archiveTable.cshtml")
-        </div>
-    </div>
-}
+</section>

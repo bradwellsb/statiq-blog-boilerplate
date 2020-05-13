@@ -4,7 +4,7 @@
         <div class="card-text mb-2">
            @foreach (IDocument category in Outputs[nameof(Data)]
              .Flatten()
-             .FilterSources("blog/categories/*")
+             .FilterSources($"{Constants.BlogPath}/categories/*")
              .OrderBy(x => x.GetString("Title")))
            {
                 var link = category.GetLink().RemoveEnd(".yml") + "/"; //remove .yml from path, add trailing slash
