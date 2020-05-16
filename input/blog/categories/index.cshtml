@@ -2,7 +2,7 @@ ArchiveSources: => $"{Constants.BlogPath}/posts/*"
 ArchiveKey: Category
 ArchiveDestination: >
   => GetInt("Index") <= 1 ? $"{Constants.BlogPath}/categories/{GroupKey}/index.html" : $"{Constants.BlogPath}/categories/{GroupKey}/{GetInt("Index")}.html"
-ArchivePageSize: 10
+ArchivePageSize: => @Constants.PostsPerPage
 ArchiveOrderKey: Published
 Title: Categories
 ArchiveTitle: => Outputs["Data"][$"{Constants.BlogPath}/categories/{GroupKey}.yml"]["Title"]

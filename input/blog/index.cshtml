@@ -1,7 +1,7 @@
 ArchiveSources: => $"{Constants.BlogPath}/posts/*"
 ArchiveDestination: >
   => GetInt("Index") <= 1 ? $"{Constants.BlogPath}/index.html" : $"{Constants.BlogPath}/{GetInt("Index")}.html"
-ArchivePageSize: 10
+ArchivePageSize: => @Constants.PostsPerPage
 ArchiveOrderKey: Published
 ArchiveOrderDescending: true
 Title: All Posts
