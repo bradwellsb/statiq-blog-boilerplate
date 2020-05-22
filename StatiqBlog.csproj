@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Statiq.Web" Version="1.0.0-alpha.12" />
+    <PackageReference Include="Statiq.Web" Version="1.0.0-alpha.15" />
   </ItemGroup>
+  <ProjectExtensions><VisualStudio><UserProperties package_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 </Project>
