@@ -6,7 +6,7 @@ ArchiveOrderKey: Published
 ArchiveOrderDescending: true
 Title: All Posts
 ArchiveTitle: >
-  => $"{Title}{(GetInt("Index") > 1 ? (" (Page " + GetInt("Index") + ")") : null)}"
+  => $"{GetString("Title")}{(GetInt("Index") > 1 ? (" (Page " + GetInt("Index") + ")") : null)}"
 ---
 
 <section class="blog-section">

@@ -1,12 +1,13 @@
 <div class="card">
     <div class="card-header"><span class="oi oi-folder"></span> Categories</div>
     <div class="list-group list-group-flush">
-        @foreach (IDocument category in Outputs[nameof(Data)]
-       .Flatten()
-       .FilterSources($"{Constants.BlogPath}/categories/*")
-       .OrderBy(x => x.GetString("Title")))
+        @foreach (IDocument category in Outputs
+           .FromPipeline(nameof(Data))
+           .FilterSources($"{Constants.BlogPath}/categories/*")
+           .OrderBy(x => x.GetString("Title")))
         {
-            var link = category.GetLink().RemoveEnd(".yml") ; //remove .yml from path
+            category.GetString("Title");
+            var link = category.GetLink().RemoveEnd(".yml"); //remove .yml from path
             <a href="@link" class="list-group-item list-group-item-action @(link==Document.GetLink()?"active":"")">@category.GetTitle()</a>
         }
     </div>

@@ -2,7 +2,7 @@
 <div>    
     @foreach (IDocument post in Model)
     {
-        IDocument topicDocument = Outputs[nameof(Archives)][$"{Constants.BlogPath}/categories/{post.GetString("Category")}/index.html"];
+        IDocument topicDocument = OutputPages[$"{Constants.BlogPath}/categories/{post.GetString("Category")}/index.html"].First();
         string excerpt = post.GetString(Statiq.Html.HtmlKeys.Excerpt);
         excerpt = excerpt.RemoveEnd("</p>"); //remove final '</p>'
         var words = excerpt.Split().Take(50); //only interested in first 50 words, so add them to array

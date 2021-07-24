@@ -1,0 +1,25 @@
+{
+  "profiles": {
+    "Development": {
+      "commandName": "Project",
+      "commandLineArgs": "preview",
+      "environmentVariables": {
+        "Environment": "Development"
+      }
+    },
+    "Staging": {
+      "commandName": "Project",
+      "commandLineArgs": "deploy",
+      "environmentVariables": {
+        "Environment": "Development"
+      }
+    },
+    "Production": {
+      "commandName": "Project",
+      "commandLineArgs": "deploy",
+      "environmentVariables": {
+        "Environment": "Production"
+      }
+    }
+  }
+}

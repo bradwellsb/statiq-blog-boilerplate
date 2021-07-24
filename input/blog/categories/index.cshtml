@@ -1,18 +1,18 @@
 ArchiveSources: => $"{Constants.BlogPath}/posts/*"
 ArchiveKey: Category
 ArchiveDestination: >
-  => GetInt("Index") <= 1 ? $"{Constants.BlogPath}/categories/{GroupKey}/index.html" : $"{Constants.BlogPath}/categories/{GroupKey}/{GetInt("Index")}.html"
+  => GetInt("Index") <= 1 ? $"{Constants.BlogPath}/categories/{GetString("GroupKey")}/index.html" : $"{Constants.BlogPath}/categories/{GetString("GroupKey")}/{GetInt("Index")}.html"
 ArchivePageSize: => @Constants.PostsPerPage
 ArchiveOrderKey: Published
 Title: Categories
-ArchiveTitle: => Outputs["Data"][$"{Constants.BlogPath}/categories/{GroupKey}.yml"]["Title"]
+ArchiveTitle: => Outputs[$"{Constants.BlogPath}/categories/{GetString("GroupKey")}.yml"].First().GetString("Title")
 ---
 <section class="blog-section">
     <div class="blog-container">
         @if (Document.ContainsKey(Keys.GroupKey))
         {
-            <h1>@(Outputs[nameof(Data)][$"{Constants.BlogPath}/categories/{Document.GetString(Keys.GroupKey)}.yml"].GetString("Title"))</h1>
-            <p>@(Outputs[nameof(Data)][$"{Constants.BlogPath}/categories/{Document.GetString(Keys.GroupKey)}.yml"].GetString("Description"))</p>
+            <h1>@(Outputs[$"{Constants.BlogPath}/categories/{Document.GetString(Keys.GroupKey)}.yml"].First().GetString("Title"))</h1>
+            <p>@(Outputs[$"{Constants.BlogPath}/categories/{Document.GetString(Keys.GroupKey)}.yml"].First().GetString("Description"))</p>
             @Html.Partial($"/{Constants.BlogPath}/_posts.cshtml", Document.GetChildren())
         }
         else
@@ -22,7 +22,7 @@ ArchiveTitle: => Outputs["Data"][$"{Constants.BlogPath}/categories/{GroupKey}.ym
                 <div>
                     <div class="p-3 mb-2 bg-light">
                         <h4>@Html.DocumentLink(category)</h4>
-                        <p>@(Outputs[nameof(Data)][$"{Constants.BlogPath}/categories/{category.GetString(Keys.GroupKey)}.yml"].GetString("Description"))</p>
+                        <p>@(Outputs[$"{Constants.BlogPath}/categories/{category.GetString(Keys.GroupKey)}.yml"].First().GetString("Description"))</p>
                     </div>
                 </div>
             }

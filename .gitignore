@@ -351,3 +351,4 @@ MigrationBackup/
 
 # Statiq output folder
 output/
+/cache
