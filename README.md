@@ -1,7 +1,7 @@
 # Blog Boilerplate for [Statiq.Web](https://github.com/statiqdev/Statiq.Web)
 This boilerplate is designed to help you quickly get your statically generated blog up and running using Statiq.Web. It includes an RSS feed, a customizable sidebar, and widgets such as categories and date archives. Please respect the [licensing terms for Statiq.Web](https://github.com/statiqdev/Statiq.Web/blob/master/LICENSE-FAQ.md).
 
-![](https://wellsb.com/csharp/wp-content/uploads/sites/2/2020/05/statiq-blog-boilerplate2-min.png)
+![](https://user-images.githubusercontent.com/3577465/190877790-c65d20fd-4e32-4f86-bd0a-fb5d6a53d9b9.png)
 
 ## How to use the boilerplate
 Making customizations to your blog using the boilerplate is easy. Here is a detailed [write-up on the subject](https://wellsb.com/csharp/aspnet/create-blog-csharp-statiq/). Following are some common configuration suggestions.
@@ -59,7 +59,7 @@ Making customizations to your blog using the boilerplate is easy. Here is a deta
     }
 </div>
 ```
-![](https://wellsb.com/csharp/wp-content/uploads/sites/2/2020/05/statiq-blog-boilerplate-cards-min.png)
+![](https://user-images.githubusercontent.com/3577465/190877808-af12edad-d8be-49b7-a929-5d9404be6ea9.png)
 
 Thanks to the following projects who currently use [Statiq.Web](https://statiq.dev/web/). Their code was used as a reference for designing this boilerplate.
 - [Net Foundation website](https://github.com/dotnet-foundation/website)
